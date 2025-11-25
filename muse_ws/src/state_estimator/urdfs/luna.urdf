@@ -1,0 +1,903 @@
+<robot name="Robot">
+  
+  <link name="base_link">
+    </link>
+  
+  <link name="main_body">
+  </link>
+  <joint name="Link__to__main_body" type="fixed">
+    <parent link="base_link" />
+    <child link="main_body" />
+    <origin rpy="1.570796327 0 0" xyz="0.0 0.0 0.0" />
+  </joint>
+  <link name="l_BATTERY_MOCKUP003">
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_battery_mockup001_zgrxpo.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.8" />
+      <origin rpy="0 0 0" xyz="0.1 -0.0275 -0.08" />
+      <inertia ixx="0.001909583722" ixy="-2.957534883e-21" ixz="-2.17092093e-21" iyy="0.001874418605" iyz="2.547174501e-21" izz="0.000368406977" />
+    </inertial>
+  </link>
+  <link name="l_MSI_CUBI_N_ADL001">
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_msi_cubi_n_adl_8ckfc7.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.8674551936974197" />
+      <origin rpy="0 0 0" xyz="-6.87573e-05 0.0267476 0.0619312" />
+      <inertia ixx="0.0013112010012237612" ixy="1.5859873728579324e-06" ixz="-1.0479762134644514e-07" iyy="0.002211379348017998" iyz="1.5859960124633728e-06" izz="0.0013112010007840858" />
+    </inertial>
+  </link>
+  <link name="l_LUNA_MAIN_BODY_ASM">
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_main_body_floor_uiflal.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_main_body_floor_bracket_y25awi.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_main_body_floor_bracket001_gxy38g.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_main_body_floor_bracket002_glrktg.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_main_body_floor_bracket003_xtkoak.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_luna_main_body_bracing_front_hap2rj.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_luna_main_body_bracing_front_m_krv1i8.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_carbon_rod_short_front_ap3ldc.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_carbon_rod_short_front001_yilhei.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_luna_main_body_front_leg_spacer_8k444y.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_main_body_front_leg_spacer_m_3cd2r5.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_battery_carrier_t3zanc.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_battery_carrier001_2viesq.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_carbon_rod_short_back_sg6ntt.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_carbon_rod_med_mid_48v6o8.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_carbon_rod_med_mid001_xpjqbv.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_battery_carrier003_ox00ax.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_battery_carrier004_gichag.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_luna_main_body_bracing_rear_wlvocg.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_luna_main_body_bracing_back_m_5ersgj.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_carbon_rod_short_back001_uhh4jw.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_carbon_rod_short_back002_qawnfn.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_m5_washer_cadgj0.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_m5_washer001_9gdu8k.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_carbon_rod_short_front002_csar1d.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="1.0214630086977319" />
+      <origin rpy="0 0 0" xyz="1.77319e-05 0.00215574 0.0763117" />
+      <inertia ixx="0.0479553952442776" ixy="-1.109498893e-07" ixz="5.758136709e-07" iyy="0.0523691518925125" iyz="-0.0011291708064241" izz="0.0066283606672571" />
+    </inertial>
+  </link>
+  <link name="l_Aluminium_Parts_Mainbody">
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_shoulder_bracket_v92fcl.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_shoulder_bracket001_krsxbd.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_shoulder_bracket003_0wl8pl.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_shoulder_bracket004_tbj1ke.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_shoulder_bracket_front_zkfwtd.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_shoulder_bracket_front001_ghdiay.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_shoulder_bracket_rear_gngufl.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_shoulder_bracket_rear001_2blird.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_main_body_leg_rail_peda3f.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_main_body_leg_rail_mirror_3wdfih.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="1.651012936644721" />
+      <origin rpy="0 0 0" xyz="0.0 0.00936585 -0.0350625" />
+      <inertia ixx="0.08214524528555907" ixy="3.0461398709200325e-09" ixz="1.1826839033708443e-08" iyy="0.09145106282175246" iyz="-0.00012272406123305698" izz="0.01355393475040258" />
+    </inertial>
+  </link>
+  <link name="l_BATTERY_MOCKUP002">
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_urdf_ros_battery_mockup_xgvtf3.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.8" />
+      <origin rpy="0 0 0" xyz="-0.1 -0.0275 -0.08" />
+      <inertia ixx="0.001909583722" ixy="-2.957534883e-21" ixz="-2.17092093e-21" iyy="0.001874418605" iyz="2.547174501e-21" izz="0.000368406977" />
+    </inertial>
+  </link>
+  <joint name="Link__to__l_BATTERY_MOCKUP003" type="fixed">
+    <parent link="main_body" />
+    <child link="l_BATTERY_MOCKUP003" />
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+  </joint>
+  <joint name="Link__to__l_MSI_CUBI_N_ADL001" type="fixed">
+    <parent link="main_body" />
+    <child link="l_MSI_CUBI_N_ADL001" />
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+  </joint>
+  <joint name="Link__to__l_LUNA_MAIN_BODY_ASM" type="fixed">
+    <parent link="main_body" />
+    <child link="l_LUNA_MAIN_BODY_ASM" />
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+  </joint>
+  <joint name="Link__to__l_Aluminium_Parts_Mainbody" type="fixed">
+    <parent link="main_body" />
+    <child link="l_Aluminium_Parts_Mainbody" />
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+  </joint>
+  <joint name="Link__to__l_BATTERY_MOCKUP002" type="fixed">
+    <parent link="main_body" />
+    <child link="l_BATTERY_MOCKUP002" />
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+  </joint>
+  <link name="FL_shoulder_to_base">
+    </link>
+  
+  <link name="FL_l_LUNA_SHOULDER_JOINT_ASM001">
+    <visual>
+      
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_schulter_luna004_w9mdzc.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_schulter_luna006_0lljfi.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="-1.5707963267948966 -1.5707963267948966 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw003_tzzudj.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.29606928064225085" />
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.0239541 1.32614e-05 0.0573496" />
+      <inertia ixx="0.00020649930783863573" ixy="-5.108279647981033e-07" ixz="-5.483236297752964e-09" iyy="0.000423514416921427" iyz="5.103827401013015e-07" izz="0.000361865637965086" />
+    </inertial>
+  </link>
+  <link name="FL_l_LUNA_UPPER_LEG_ASM">
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_solid_y4u6ue.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_shell_rfigsq.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw004_x135va.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_oberschenkel_deckel_rme7b3.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <collision>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000736336 -0.0309636 -0.07227" />
+      <geometry>
+        <box size="0.25532 0.056000000000009 0.10078" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.22744829778611395" />
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.0112269 -0.0324326 -0.072418" />
+      <inertia ixx="8.427858181667436e-05" ixy="4.7343764923597135e-06" ixz="3.625854277241708e-05" iyy="0.00047287925978284676" iyz="-7.48656978360388e-07" izz="0.0004518159194452576" />
+    </inertial>
+  </link>
+  <link name="FL_l_Cybergear_upper_leg">
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw004_soo9zr.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.31390229078502988" />
+      <origin rpy="0 0 0" xyz="0.000367633 -0.0720141 0.000118456" />
+      <inertia ixx="4.560349035529633e-05" ixy="9.180361316080472e-08" ixz="-5.088671275692745e-07" iyy="7.68401267724726e-05" iyz="4.155678241401413e-08" izz="4.68364298064408e-05" />
+    </inertial>
+  </link>
+  <link name="FL_lower_leg">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_leg_placeholder.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <collision>
+      
+      <origin rpy="0 0 0" xyz="0.005 0.0 0.1199659" />
+      <geometry>
+        <box size="0.01 0.0398739263993852 0.159318247382493" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.0801992588761483" />
+      <origin rpy="0 0 0" xyz="0.005 0.0 -0.0781594" />
+      <inertia ixx="0.0002987842676361" ixy="0.0" ixz="0.0" iyy="0.0002927989540089" iyz="-0.0" izz="7.3219691818e-06" />
+    </inertial>
+  </link>
+  <joint name="FL_shoulder_to_base_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="FL_shoulder_to_base" />
+    <origin rpy="1.570796327 0 0" xyz="0.142 -0.17 0.018" />
+  </joint>
+  <joint name="FL_shoulder_joint" type="revolute">
+    <parent link="FL_shoulder_to_base" />
+    <child link="FL_l_LUNA_SHOULDER_JOINT_ASM001" />
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="FL_upper_leg_joint" type="revolute">
+    <parent link="FL_l_LUNA_SHOULDER_JOINT_ASM001" />
+    <child link="FL_l_LUNA_UPPER_LEG_ASM" />
+    <origin rpy="0 1.570796327 1.5707963267948966" xyz="0.04 0.0 0.05" />
+    <axis xyz="0 1 0" />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="FL_lower_leg_joint" type="revolute">
+    <parent link="FL_l_LUNA_UPPER_LEG_ASM" />
+    <child link="FL_lower_leg" />
+    <origin rpy="3.141592654 0 1.570796327" xyz="0.02 0.0 -0.2" />
+    <axis xyz="-1 0 0 " />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="FL_l_LUNA_UPPER_LEG_ASM__to__l_Cybergear_upper_leg" type="fixed">
+    <parent link="FL_l_LUNA_UPPER_LEG_ASM" />
+    <child link="FL_l_Cybergear_upper_leg" />
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+  </joint>
+  <link name="BL_shoulder_to_base">
+    </link>
+  
+  <link name="BL_l_LUNA_SHOULDER_JOINT_ASM001">
+    <visual>
+      
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_schulter_luna004_w9mdzc.stl" scale="-1 1 -1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_schulter_luna006_0lljfi.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="-1.5707963267948966 -1.5707963267948966 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw003_tzzudj.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.29606928064225085" />
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.0239541 1.32614e-05 0.0573496" />
+      <inertia ixx="0.00020649930783863573" ixy="-5.108279647981033e-07" ixz="-5.483236297752964e-09" iyy="0.000423514416921427" iyz="5.103827401013015e-07" izz="0.000361865637965086" />
+    </inertial>
+  </link>
+  <link name="BL_l_LUNA_UPPER_LEG_ASM">
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_solid_y4u6ue.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_shell_rfigsq.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw004_x135va.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_oberschenkel_deckel_rme7b3.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <collision>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000736336 -0.0309636 -0.07227" />
+      <geometry>
+        <box size="0.25532 0.056000000000009 0.10078" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.22744829778611395" />
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.0112269 -0.0324326 -0.072418" />
+      <inertia ixx="8.427858181667436e-05" ixy="4.7343764923597135e-06" ixz="3.625854277241708e-05" iyy="0.00047287925978284676" iyz="-7.48656978360388e-07" izz="0.0004518159194452576" />
+    </inertial>
+  </link>
+  <link name="BL_l_Cybergear_upper_leg">
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw004_soo9zr.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.31390229078502988" />
+      <origin rpy="0 0 0" xyz="0.000367633 -0.0720141 0.000118456" />
+      <inertia ixx="4.560349035529633e-05" ixy="9.180361316080472e-08" ixz="-5.088671275692745e-07" iyy="7.68401267724726e-05" iyz="4.155678241401413e-08" izz="4.68364298064408e-05" />
+    </inertial>
+  </link>
+  <link name="BL_lower_leg">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_leg_placeholder.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <collision>
+      
+      <origin rpy="0 0 0" xyz="0.005 0.0 0.1199659" />
+      <geometry>
+        <box size="0.01 0.0398739263993852 0.159318247382493" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.0801992588761483" />
+      <origin rpy="0 0 0" xyz="0.005 0.0 -0.0781594" />
+      <inertia ixx="0.0002987842676361" ixy="0.0" ixz="0.0" iyy="0.0002927989540089" iyz="-0.0" izz="7.3219691818e-06" />
+    </inertial>
+  </link>
+  <joint name="BL_shoulder_to_base_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="BL_shoulder_to_base" />
+    <origin rpy="1.570796327 0 0" xyz="0.115 0.35 0.018" />
+  </joint>
+  <joint name="BL_shoulder_joint" type="revolute">
+    <parent link="BL_shoulder_to_base" />
+    <child link="BL_l_LUNA_SHOULDER_JOINT_ASM001" />
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="BL_upper_leg_joint" type="revolute">
+    <parent link="BL_l_LUNA_SHOULDER_JOINT_ASM001" />
+    <child link="BL_l_LUNA_UPPER_LEG_ASM" />
+    <origin rpy="0 1.570796327 1.5707963267948966" xyz="0.04 0.0 0.05" />
+    <axis xyz="0 1 0" />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="BL_lower_leg_joint" type="revolute">
+    <parent link="BL_l_LUNA_UPPER_LEG_ASM" />
+    <child link="BL_lower_leg" />
+    <origin rpy="3.141592654 0 1.570796327" xyz="0.02 0.0 -0.2" />
+    <axis xyz="-1 0 0 " />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="BL_l_LUNA_UPPER_LEG_ASM__to__l_Cybergear_upper_leg" type="fixed">
+    <parent link="BL_l_LUNA_UPPER_LEG_ASM" />
+    <child link="BL_l_Cybergear_upper_leg" />
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+  </joint>
+  <link name="FR_shoulder_to_base">
+    </link>
+  
+  <link name="FR_l_LUNA_SHOULDER_JOINT_ASM001">
+    <visual>
+      
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_schulter_luna004_w9mdzc.stl" scale="1 1 -1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_schulter_luna006_0lljfi.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="-1.5707963267948966 -1.5707963267948966 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw003_tzzudj.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.29606928064225085" />
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.0239541 1.32614e-05 0.0573496" />
+      <inertia ixx="0.00020649930783863573" ixy="-5.108279647981033e-07" ixz="-5.483236297752964e-09" iyy="0.000423514416921427" iyz="5.103827401013015e-07" izz="0.000361865637965086" />
+    </inertial>
+  </link>
+  <link name="FR_l_LUNA_UPPER_LEG_ASM">
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_solid_y4u6ue.stl" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_shell_rfigsq.stl" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw004_x135va.stl" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_oberschenkel_deckel_rme7b3.stl" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <collision>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000736336 -0.0309636 -0.07227" />
+      <geometry>
+        <box size="0.25532 0.056000000000009 0.10078" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.22744829778611395" />
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.0112269 -0.0324326 -0.072418" />
+      <inertia ixx="8.427858181667436e-05" ixy="4.7343764923597135e-06" ixz="3.625854277241708e-05" iyy="0.00047287925978284676" iyz="-7.48656978360388e-07" izz="0.0004518159194452576" />
+    </inertial>
+  </link>
+  <link name="FR_l_Cybergear_upper_leg">
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw004_soo9zr.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.31390229078502988" />
+      <origin rpy="0 0 0" xyz="0.000367633 -0.0720141 0.000118456" />
+      <inertia ixx="4.560349035529633e-05" ixy="9.180361316080472e-08" ixz="-5.088671275692745e-07" iyy="7.68401267724726e-05" iyz="4.155678241401413e-08" izz="4.68364298064408e-05" />
+    </inertial>
+  </link>
+  <link name="FR_lower_leg">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_leg_placeholder.stl" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <collision>
+      
+      <origin rpy="0 0 0" xyz="0.005 0.0 -0.1199659" />
+      <geometry>
+        <box size="0.01 0.0398739263993852 0.159318247382493" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.0801992588761483" />
+      <origin rpy="0 0 0" xyz="0.005 0.0 -0.0781594" />
+      <inertia ixx="0.0002987842676361" ixy="0.0" ixz="0.0" iyy="0.0002927989540089" iyz="-0.0" izz="7.3219691818e-06" />
+    </inertial>
+  </link>
+  <joint name="FR_shoulder_to_base_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="FR_shoulder_to_base" />
+    <origin rpy="1.570796327 0 0" xyz="-0.142 -0.17 0.018" />
+  </joint>
+  <joint name="FR_shoulder_joint" type="revolute">
+    <parent link="FR_shoulder_to_base" />
+    <child link="FR_l_LUNA_SHOULDER_JOINT_ASM001" />
+    <origin rpy="0 0 3.141592654" xyz="0 0 0" />
+    <axis xyz="0 0 -1" />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="FR_upper_leg_joint" type="revolute">
+    <parent link="FR_l_LUNA_SHOULDER_JOINT_ASM001" />
+    <child link="FR_l_LUNA_UPPER_LEG_ASM" />
+    <origin rpy="0 -1.570796327 1.5707963267948966" xyz="0.04 0.0 0.05" />
+    <axis xyz="0 1 0" />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="FR_lower_leg_joint" type="revolute">
+    <parent link="FR_l_LUNA_UPPER_LEG_ASM" />
+    <child link="FR_lower_leg" />
+    <origin rpy="0.0 0 1.570796327" xyz="-0.02 0.0 -0.2" />
+    <axis xyz="-1 0 0 " />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="FR_l_LUNA_UPPER_LEG_ASM__to__l_Cybergear_upper_leg" type="fixed">
+    <parent link="FR_l_LUNA_UPPER_LEG_ASM" />
+    <child link="FR_l_Cybergear_upper_leg" />
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+  </joint>
+  <link name="BR_shoulder_to_base">
+    </link>
+  
+  <link name="BR_l_LUNA_SHOULDER_JOINT_ASM001">
+    <visual>
+      
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_schulter_luna004_w9mdzc.stl" scale="-1 1 -1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_schulter_luna006_0lljfi.stl" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="-1.5707963267948966 -1.5707963267948966 0" xyz="0.039 0.0 0.05743" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw003_tzzudj.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.29606928064225085" />
+      <origin rpy="-1.5707963267948963 -1.5707963267948963 0" xyz="0.0239541 1.32614e-05 0.0573496" />
+      <inertia ixx="0.00020649930783863573" ixy="-5.108279647981033e-07" ixz="-5.483236297752964e-09" iyy="0.000423514416921427" iyz="5.103827401013015e-07" izz="0.000361865637965086" />
+    </inertial>
+  </link>
+  <link name="BR_l_LUNA_UPPER_LEG_ASM">
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_solid_y4u6ue.stl" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_shell_rfigsq.stl" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw004_x135va.stl" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <visual>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000126336 3.63695e-05 0.003" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_oberschenkel_deckel_rme7b3.stl" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <collision>
+      
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.000736336 -0.0309636 -0.07227" />
+      <geometry>
+        <box size="0.25532 0.056000000000009 0.10078" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.22744829778611395" />
+      <origin rpy="0 -1.5707963267948961 0" xyz="-0.0112269 -0.0324326 -0.072418" />
+      <inertia ixx="8.427858181667436e-05" ixy="4.7343764923597135e-06" ixz="3.625854277241708e-05" iyy="0.00047287925978284676" iyz="-7.48656978360388e-07" izz="0.0004518159194452576" />
+    </inertial>
+  </link>
+  <link name="BR_l_Cybergear_upper_leg">
+    <visual>
+      
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/unnamed_cybergearmotor_sw004_soo9zr.stl" />
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.31390229078502988" />
+      <origin rpy="0 0 0" xyz="0.000367633 -0.0720141 0.000118456" />
+      <inertia ixx="4.560349035529633e-05" ixy="9.180361316080472e-08" ixz="-5.088671275692745e-07" iyy="7.68401267724726e-05" iyz="4.155678241401413e-08" izz="4.68364298064408e-05" />
+    </inertial>
+  </link>
+  <link name="BR_lower_leg">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="/home/jonas/kamaro/luna_ws/src/cad/meshes/luna_leg_placeholder.stl" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <collision>
+      
+      <origin rpy="0 0 0" xyz="0.005 0.0 -0.1199659" />
+      <geometry>
+        <box size="0.01 0.0398739263993852 0.159318247382493" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.0801992588761483" />
+      <origin rpy="0 0 0" xyz="0.005 0.0 -0.0781594" />
+      <inertia ixx="0.0002987842676361" ixy="0.0" ixz="0.0" iyy="0.0002927989540089" iyz="-0.0" izz="7.3219691818e-06" />
+    </inertial>
+  </link>
+  <joint name="BR_shoulder_to_base_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="BR_shoulder_to_base" />
+    <origin rpy="1.570796327 0 0" xyz="-0.115 0.35 0.018" />
+  </joint>
+  <joint name="BR_shoulder_joint" type="revolute">
+    <parent link="BR_shoulder_to_base" />
+    <child link="BR_l_LUNA_SHOULDER_JOINT_ASM001" />
+    <origin rpy="0 0 3.141592654" xyz="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="BR_upper_leg_joint" type="revolute">
+    <parent link="BR_l_LUNA_SHOULDER_JOINT_ASM001" />
+    <child link="BR_l_LUNA_UPPER_LEG_ASM" />
+    <origin rpy="0 -1.570796327 1.5707963267948966" xyz="0.04 0.0 0.05" />
+    <axis xyz="0 1 0" />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="BR_lower_leg_joint" type="revolute">
+    <parent link="BR_l_LUNA_UPPER_LEG_ASM" />
+    <child link="BR_lower_leg" />
+    <origin rpy="0.0 0 1.570796327" xyz="-0.02 0.0 -0.2" />
+    <axis xyz="-1 0 0 " />
+    <limit effort="12" lower="-3.141592653589793" upper="3.141592653589793" velocity="2.0" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <joint name="BR_l_LUNA_UPPER_LEG_ASM__to__l_Cybergear_upper_leg" type="fixed">
+    <parent link="BR_l_LUNA_UPPER_LEG_ASM" />
+    <child link="BR_l_Cybergear_upper_leg" />
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
+  </joint>
+</robot>

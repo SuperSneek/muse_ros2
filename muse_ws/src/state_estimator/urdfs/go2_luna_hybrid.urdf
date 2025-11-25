@@ -1,0 +1,413 @@
+<?xml version="1.0"?>
+<robot name="go2_luna">
+
+  <!-- Base link -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.3762 0.0935 0.114"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.671705 0.692426 0.774270 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.3762 0.0935 0.114"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Front Left Leg -->
+  <link name="FL_shoulder">
+    <visual>
+      <geometry>
+        <cylinder radius="0.046" length="0.04"/>
+      </geometry>
+      <material name="metal">
+        <color rgba="0.9 0.95 0.95 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.046" length="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FL_shoulder_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="FL_shoulder"/>
+    <origin xyz="0.27 0.1 0" rpy="0 0 0"/>
+    <axis xyz="-1 0 0"/>
+    <limit lower="-1.0472" upper="1.0472" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="FL_thigh">
+    <visual>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+      <material name="metal">
+        <color rgba="0.9 0.95 0.95 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FL_thigh_joint" type="revolute">
+    <parent link="FL_shoulder"/>
+    <child link="FL_thigh"/>
+    <origin xyz="0 0.0955 0" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-1.5708" upper="3.4907" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="FL_calf">
+    <visual>
+      <geometry>
+        <cylinder radius="0.012" length="0.12"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.671705 0.692426 0.774270 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.012" length="0.12"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FL_calf_joint" type="revolute">
+    <parent link="FL_thigh"/>
+    <child link="FL_calf"/>
+    <origin xyz="0 0 -0.213" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-2.7227" upper="-0.83776" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="FL_foot">
+    <visual>
+      <geometry>
+        <sphere radius="0.022"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.022"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FL_foot_joint" type="fixed">
+    <parent link="FL_calf"/>
+    <child link="FL_foot"/>
+    <origin xyz="-0.002 0 -0.213" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Front Right Leg -->
+  <link name="FR_shoulder">
+    <visual>
+      <geometry>
+        <cylinder radius="0.046" length="0.04"/>
+      </geometry>
+      <material name="metal">
+        <color rgba="0.9 0.95 0.95 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.046" length="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FR_shoulder_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="FR_shoulder"/>
+    <origin xyz="0.27 -0.1 0" rpy="0 0 0"/>
+    <axis xyz="-1 0 0"/>
+    <limit lower="-1.0472" upper="1.0472" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="FR_thigh">
+    <visual>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+      <material name="metal">
+        <color rgba="0.9 0.95 0.95 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FR_thigh_joint" type="revolute">
+    <parent link="FR_shoulder"/>
+    <child link="FR_thigh"/>
+    <origin xyz="0 -0.0955 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.4907" upper="1.5708" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="FR_calf">
+    <visual>
+      <geometry>
+        <cylinder radius="0.013" length="0.12"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.671705 0.692426 0.774270 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.013" length="0.12"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FR_calf_joint" type="revolute">
+    <parent link="FR_thigh"/>
+    <child link="FR_calf"/>
+    <origin xyz="0 0 -0.213" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="0.83776" upper="2.7227" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="FR_foot">
+    <visual>
+      <geometry>
+        <sphere radius="0.022"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.022"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="FR_foot_joint" type="fixed">
+    <parent link="FR_calf"/>
+    <child link="FR_foot"/>
+    <origin xyz="-0.002 0 -0.213" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Back Left Leg -->
+  <link name="BL_shoulder">
+    <visual>
+      <geometry>
+        <cylinder radius="0.046" length="0.04"/>
+      </geometry>
+      <material name="metal">
+        <color rgba="0.9 0.95 0.95 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.046" length="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="BL_shoulder_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="BL_shoulder"/>
+    <origin xyz="-0.27 0.0665 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-1.0472" upper="1.0472" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="BL_thigh">
+    <visual>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+      <material name="metal">
+        <color rgba="0.9 0.95 0.95 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="BL_thigh_joint" type="revolute">
+    <parent link="BL_shoulder"/>
+    <child link="BL_thigh"/>
+    <origin xyz="0 0.0955 0" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-1.5708" upper="3.4907" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="BL_calf">
+    <visual>
+      <geometry>
+        <cylinder radius="0.013" length="0.12"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.671705 0.692426 0.774270 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.013" length="0.12"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="BL_calf_joint" type="revolute">
+    <parent link="BL_thigh"/>
+    <child link="BL_calf"/>
+    <origin xyz="0 0 -0.213" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-2.7227" upper="-0.83776" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="BL_foot">
+    <visual>
+      <geometry>
+        <sphere radius="0.022"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.022"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="BL_foot_joint" type="fixed">
+    <parent link="BL_calf"/>
+    <child link="BL_foot"/>
+    <origin xyz="-0.002 0 -0.213" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Back Right Leg -->
+  <link name="BR_shoulder">
+    <visual>
+      <geometry>
+        <cylinder radius="0.046" length="0.04"/>
+      </geometry>
+      <material name="metal">
+        <color rgba="0.9 0.95 0.95 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.046" length="0.04"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="BR_shoulder_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="BR_shoulder"/>
+    <origin xyz="-0.27 -0.0665 0" rpy="0 0 0"/>
+    <axis xyz="-1 0 0"/>
+    <limit lower="-1.0472" upper="1.0472" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="BR_thigh">
+    <visual>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+      <material name="metal">
+        <color rgba="0.9 0.95 0.95 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.213 0.0245 0.034"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="BR_thigh_joint" type="revolute">
+    <parent link="BR_shoulder"/>
+    <child link="BR_thigh"/>
+    <origin xyz="0 -0.0955 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-3.4907" upper="1.5708" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="BR_calf">
+    <visual>
+      <geometry>
+        <cylinder radius="0.013" length="0.12"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.671705 0.692426 0.774270 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.013" length="0.12"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="BR_calf_joint" type="revolute">
+    <parent link="BR_thigh"/>
+    <child link="BR_calf"/>
+    <origin xyz="0 0 -0.213" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="0.83776" upper="2.7227" effort="12" velocity="10"/>
+    <dynamics damping="0.6" friction="0.2"/>
+  </joint>
+
+  <link name="BR_foot">
+    <visual>
+      <geometry>
+        <sphere radius="0.022"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <sphere radius="0.022"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="BR_foot_joint" type="fixed">
+    <parent link="BR_calf"/>
+    <child link="BR_foot"/>
+    <origin xyz="-0.002 0 -0.213" rpy="0 0 0"/>
+  </joint>
+
+</robot>
