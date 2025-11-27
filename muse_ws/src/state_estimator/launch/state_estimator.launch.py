@@ -70,7 +70,7 @@ def generate_launch_description():
             name='state_estimator',
             output='screen',
             parameters=[
-                {'use_sim_time': True},
+                {'use_sim_time': False},
                 LaunchConfiguration('pluginlist_yaml'),
                 LaunchConfiguration('timeoutlist_yaml'),
                 attitude_config,

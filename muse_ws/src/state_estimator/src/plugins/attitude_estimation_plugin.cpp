@@ -133,7 +133,9 @@ namespace state_estimator_plugins
 			const sensor_msgs::msg::Imu::ConstSharedPtr imu)
 		{
 			Eigen::Vector3d omega(imu->angular_velocity.x, imu->angular_velocity.y, imu->angular_velocity.z);
-	        Eigen::Vector3d acc(imu->linear_acceleration.x, imu->linear_acceleration.y, imu->linear_acceleration.z);	
+	        Eigen::Vector3d acc(imu->linear_acceleration.x, imu->linear_acceleration.y, imu->linear_acceleration.z);
+			// Store the IMU timestamp for the output message
+			last_imu_stamp_ = imu->header.stamp;
 			computeAttitude(omega, acc);		
 		}
 
@@ -203,7 +205,7 @@ namespace state_estimator_plugins
 			omega_filt = iit::commons::quatToOmega(quat_est, quat_dot);
 
 			// // publishing
-			msg_.header.stamp = this->node_->get_clock()->now();
+			msg_.header.stamp = last_imu_stamp_;  // Use IMU timestamp for proper synchronization
 
 			msg_.quaternion[0] = quat_est.w();
 			msg_.quaternion[1] = quat_est.x();
@@ -256,6 +258,7 @@ namespace state_estimator_plugins
 		double time_{};
 		bool begin{true};
 		double time_begin_;
+		rclcpp::Time last_imu_stamp_;  // Store IMU timestamp for output message
 
 	}; // end class AttitudeEstimationPlugin
 

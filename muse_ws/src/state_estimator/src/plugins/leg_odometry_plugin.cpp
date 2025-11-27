@@ -42,8 +42,8 @@ using JointStateMsg = sensor_msgs::msg::JointState;
 using ContactMsg = state_estimator_msgs::msg::ContactDetection;
 using AttitudeMsg = state_estimator_msgs::msg::Attitude;
 
-using ApproximateTimePolicy = message_filters::sync_policies::ApproximateTime<ImuMsg, JointStateMsg, ContactMsg, AttitudeMsg>;
-using ExactTimePolicy = message_filters::sync_policies::ExactTime<ImuMsg, JointStateMsg, ContactMsg, AttitudeMsg>;
+using ApproximateTimePolicy = message_filters::sync_policies::ApproximateTime<ImuMsg, JointStateMsg, AttitudeMsg>;
+using ExactTimePolicy = message_filters::sync_policies::ExactTime<ImuMsg, JointStateMsg, AttitudeMsg>;
 
 #define MySyncPolicy ApproximateTimePolicy
 
@@ -65,10 +65,10 @@ public:
         // Initialize member variables
         omega_.setZero();
         base_omega_.setZero();
-        stance_lf_ = false;
-        stance_rf_ = false;
-        stance_lh_ = false;
-        stance_rh_ = false;
+        stance_lf_ = true;
+        stance_rf_ = true;
+        stance_lh_ = true;
+        stance_rh_ = true;
         base_R_imu_.setIdentity();
         model_loaded_ = false;
 
@@ -101,7 +101,7 @@ private:
     // Core components
     std::shared_ptr<message_filters::Subscriber<ImuMsg>> imu_sub_;
     std::shared_ptr<message_filters::Subscriber<JointStateMsg>> joint_state_sub_;
-    std::shared_ptr<message_filters::Subscriber<ContactMsg>> contact_sub_;
+    // std::shared_ptr<message_filters::Subscriber<ContactMsg>> contact_sub_;  // TEMPORARY: disabled for experiment
     std::shared_ptr<message_filters::Subscriber<AttitudeMsg>> attitude_sub_;
     std::shared_ptr<message_filters::Synchronizer<MySyncPolicy>> sync_;
 
@@ -329,8 +329,8 @@ private:
             "leg_odometry_plugin.imu_topic", "/imu");
         std::string joint_states_topic = node->declare_parameter<std::string>(
             "leg_odometry_plugin.joint_states_topic", "/state_estimator/joint_states");
-        std::string contact_topic = node->declare_parameter<std::string>(
-            "leg_odometry_plugin.contact_topic", "/state_estimator/contact_detection");
+        // std::string contact_topic = node->declare_parameter<std::string>(
+        //     "leg_odometry_plugin.contact_topic", "/state_estimator/contact_detection");  // TEMPORARY: disabled for experiment
         std::string attitude_topic = node->declare_parameter<std::string>(
             "leg_odometry_plugin.attitude_topic", "/state_estimator/attitude");
 
@@ -339,14 +339,14 @@ private:
         
         imu_sub_ = std::make_shared<message_filters::Subscriber<ImuMsg>>(node, imu_topic, sensor_qos);
         joint_state_sub_ = std::make_shared<message_filters::Subscriber<JointStateMsg>>(node, joint_states_topic, sensor_qos);
-        contact_sub_ = std::make_shared<message_filters::Subscriber<ContactMsg>>(node, contact_topic, sensor_qos);
+        // contact_sub_ = std::make_shared<message_filters::Subscriber<ContactMsg>>(node, contact_topic, sensor_qos);  // TEMPORARY: disabled for experiment
         attitude_sub_ = std::make_shared<message_filters::Subscriber<AttitudeMsg>>(node, attitude_topic, sensor_qos);
 
         sync_ = std::make_shared<message_filters::Synchronizer<MySyncPolicy>>(
-            MySyncPolicy(100), *imu_sub_, *joint_state_sub_, *contact_sub_, *attitude_sub_);
+            MySyncPolicy(100), *imu_sub_, *joint_state_sub_, *attitude_sub_);
         sync_->registerCallback(std::bind(&LegOdometryPlugin::callback, this,
                                          std::placeholders::_1, std::placeholders::_2,
-                                         std::placeholders::_3, std::placeholders::_4));
+                                         std::placeholders::_3));
 
         // Setup publishers
         std::string pub_topic = node->declare_parameter<std::string>(
@@ -360,7 +360,6 @@ private:
 
     void callback(const ImuMsg::ConstSharedPtr imu,
                   const JointStateMsg::ConstSharedPtr js,
-                  const ContactMsg::ConstSharedPtr contact,
                   const AttitudeMsg::ConstSharedPtr attitude) {
         
         if (!model_loaded_) {
@@ -368,7 +367,6 @@ private:
                                  "Model not loaded, skipping callback");
             return;
         }
-
         // Validate input sizes
         if (!validateInputSizes(js)) {
             return;
@@ -380,8 +378,8 @@ private:
             return;
         }
 
-        // Extract IMU and contact data
-        extractSensorData(imu, contact);
+        // Extract IMU data (TEMPORARY: always assume all stances positive for experiment)
+        extractSensorData(imu);
 
         // Compute kinematics
         std::vector<Eigen::Vector3d> foot_velocities;
@@ -475,13 +473,13 @@ private:
         return true;
     }
 
-    void extractSensorData(const ImuMsg::ConstSharedPtr& imu, 
-                          const ContactMsg::ConstSharedPtr& contact) {
+    void extractSensorData(const ImuMsg::ConstSharedPtr& imu) {
         omega_ << imu->angular_velocity.x, imu->angular_velocity.y, imu->angular_velocity.z;
-        stance_lf_ = contact->stance_lf;
-        stance_rf_ = contact->stance_rf;
-        stance_lh_ = contact->stance_lh;
-        stance_rh_ = contact->stance_rh;
+        // TEMPORARY: Always assume all feet in contact for experiment
+        stance_lf_ = true;
+        stance_rf_ = true;
+        stance_lh_ = true;
+        stance_rh_ = true;
     }
 
     bool computeFootVelocities(const Eigen::VectorXd& q, const Eigen::VectorXd& v,

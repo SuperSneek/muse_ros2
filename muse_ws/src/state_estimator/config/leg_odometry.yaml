@@ -5,8 +5,8 @@
       # urdf_path: "$(find state_estimator)/urdfs/anymal.urdf"
       urdf_path: "$(find state_estimator)/urdfs/go2_luna_hybrid.urdf"
 
-      imu_topic: "/imu" # Unitree: "/trunk_imu" # ANYmal: "/sensors/imu"
-      joint_states_topic: "/joint_states" # Unitree (Go1): "/go1_gazebo/joint_states" # ANYmal: "/state_estimator/joint_states"
+      imu_topic: "/imu/data" # Unitree: "/trunk_imu" # ANYmal: "/sensors/imu"
+      joint_states_topic: "/joint_states_zeroed" # Unitree (Go1): "/go1_gazebo/joint_states" # ANYmal: "/state_estimator/joint_states"
       contact_topic: "/state_estimator/contact_detection"
       attitude_topic: "/state_estimator/attitude"
       pub_topic: "/state_estimator/leg_odometry"
@@ -15,10 +15,10 @@
       feet_frame_names: ["FL_foot", "FR_foot", "BL_foot", "BR_foot"]
       # Joint order: explicit ordering of joint names to match the model
       # If empty, the plugin will use the order from the URDF model
-      joint_order: ["FL_shoulder_joint", "FL_thigh_joint", "FL_calf_joint", 
-                     "FR_shoulder_joint", "FR_thigh_joint", "FR_calf_joint",
-                     "BL_shoulder_joint", "BL_thigh_joint", "BL_calf_joint",
-                     "BR_shoulder_joint", "BR_thigh_joint", "BR_calf_joint"]
+      joint_order: ["FL_shoulder_joint", "FL_upper_leg_joint", "FL_lower_leg_joint", 
+                     "FR_shoulder_joint", "FR_upper_leg_joint", "FR_lower_leg_joint",
+                     "BL_shoulder_joint", "BL_upper_leg_joint", "BL_lower_leg_joint",
+                     "BR_shoulder_joint", "BR_upper_leg_joint", "BR_lower_leg_joint"]
       base_R_imu: [1.0, 0.0, 0.0,
                    0.0, 1.0, 0.0,
                    0.0, 0.0, 1.0]
