@@ -1,0 +1,23 @@
+/**:
+  ros__parameters:
+    imu_odom_plugin:
+      plugin: "ImuOdomPlugin"
+      
+      # Input topics (filtered IMU data)
+      imu_topic: "/imu/data"
+      
+      # Output topic
+      output_topic: "/state_estimator/imu_odometry"
+      
+      # Frame IDs
+      output_frame_id: "odom"
+      child_frame_id: "base_link"
+      
+      # Initial conditions
+      initial_height: 0.06  # Initial height estimate in meters (adjust based on your robot)
+      
+      # Filter settings
+      velocity_filter_alpha: 0.7  # Low-pass filter coefficient (0-1, lower = smoother)
+      filter_window_size: 3  # Moving average window size for acceleration/gyro
+      position_drift_compensation: 0.1  # Velocity damping factor (0-1, higher = more damping)
+      remove_gravity: true  # Remove gravity from acceleration measurements
