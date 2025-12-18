@@ -154,6 +154,8 @@ namespace state_estimator_plugins
 			// Reading imu
 			Eigen::Vector3d acc(imu->linear_acceleration.x, imu->linear_acceleration.y, imu->linear_acceleration.z);
 
+			last_imu_stamp_ = imu->header.stamp;
+
 			// Reading attitude estimation
 			omega << attitude->angular_velocity[0], attitude->angular_velocity[1], attitude->angular_velocity[2];
 			quat_est.w() = attitude->quaternion[0];
@@ -243,7 +245,7 @@ namespace state_estimator_plugins
 			xhat_estimated = sensor_fusion_->getX();
 
 			// publish
-			msg_.header.stamp = this->node_->get_clock()->now();
+			msg_.header.stamp = last_imu_stamp_;
 
 			msg_.pose.pose.orientation.w = quat_est.w();
 			msg_.pose.pose.orientation.x = quat_est.x();
@@ -274,6 +276,8 @@ namespace state_estimator_plugins
 		Eigen::Matrix<double, 6, 6> P;
 		Eigen::Matrix<double, 6, 6> Q;
 		Eigen::Matrix<double, 3, 3> R;
+
+		rclcpp::Time last_imu_stamp_;
 
 		std::shared_ptr<message_filters::Subscriber<sensor_msgs::msg::Imu>> imu_sub_;
 		std::shared_ptr<message_filters::Subscriber<state_estimator_msgs::msg::Attitude>> attitude_sub_;

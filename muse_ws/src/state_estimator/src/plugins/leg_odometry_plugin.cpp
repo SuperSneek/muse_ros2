@@ -116,6 +116,8 @@ private:
     pinocchio::Data data_;
     bool model_loaded_;
 
+    rclcpp::Time last_imu_stamp_;
+
     // Configuration
     std::vector<std::string> feet_frame_names_;
     std::vector<std::string> expected_joint_order_;
@@ -475,6 +477,7 @@ private:
 
     void extractSensorData(const ImuMsg::ConstSharedPtr& imu) {
         omega_ << imu->angular_velocity.x, imu->angular_velocity.y, imu->angular_velocity.z;
+        last_imu_stamp_ = rclcpp::Time(imu->header.stamp);
         // TEMPORARY: Always assume all feet in contact for experiment
         stance_lf_ = true;
         stance_rf_ = true;
@@ -588,10 +591,8 @@ private:
                        const std::vector<double>& foot_heights,
                        int num_contacts) {
         
-        auto now = this->node_->get_clock()->now();
-        
         // Publish leg odometry
-        msg_.header.stamp = now;
+        msg_.header.stamp = last_imu_stamp_;
         
         for (int j = 0; j < 3; ++j) {
             if (foot_velocities.size() >= 4) {
@@ -606,7 +607,7 @@ private:
         pub_->publish(msg_);
 
         // Publish base height
-        base_height_msg_.header.stamp = now;
+        base_height_msg_.header.stamp = last_imu_stamp_;
         base_height_msg_.height = base_height;
         
         if (foot_heights.size() >= 4) {
