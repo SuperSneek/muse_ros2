@@ -1,0 +1,55 @@
+# Sensor Fusion Debug Publisher Configuration
+# This file configures the synthetic sensor publisher for Kalman filter debugging
+
+# State 1 duration (seconds)
+state1_duration: 10.0
+
+# Transition duration (seconds) - how long to transition from state 1 to state 2
+transition_duration: 5.0
+
+# Enable looping through state 1 -> transition -> state 2 -> repeat
+loop_enabled: false
+
+# ============================================================================
+# State 1 Parameters (initial state)
+# ============================================================================
+
+# IMU acceleration mean [x, y, z] in m/s^2
+# At rest with Z-up convention: [0, 0, -9.81] (gravity)
+# For testing: use [0, 0, 0] and gravity will be handled by sensor fusion
+imu_acc_mean: [0.0, 0.0, 0.0]
+
+# IMU acceleration noise standard deviation (m/s^2)
+# Typical IMU noise: 0.01 - 0.05 m/s^2
+imu_acc_noise_std: 0.01
+
+# Leg odometry velocity mean [x, y, z] in m/s
+leg_odom_vel_mean: [0.0, 0.0, 0.0]
+
+# Leg odometry velocity noise standard deviation (m/s)
+leg_odom_vel_noise_std: 0.005
+
+# ============================================================================
+# State 2 Parameters (transition target state)
+# ============================================================================
+
+# IMU acceleration mean in state 2
+# Example: simulate robot starting to move
+imu_acc_mean_s2: [0.5, 0.0, 0.0]
+
+# IMU noise in state 2 (can be different from state 1)
+imu_acc_noise_std_s2: 0.015
+
+# Leg odometry velocity mean in state 2
+# Example: robot moving forward at 0.5 m/s
+leg_odom_vel_mean_s2: [0.5, 0.0, 0.0]
+
+# Leg odometry noise in state 2
+leg_odom_vel_noise_std_s2: 0.008
+
+# ============================================================================
+# Other Parameters
+# ============================================================================
+
+# Initial height estimate (m)
+initial_height: 0.5

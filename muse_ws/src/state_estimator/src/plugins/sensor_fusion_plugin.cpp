@@ -224,7 +224,7 @@ namespace state_estimator_plugins
 			sensor_fusion_->predict(time_, u);
 
             // DIAGNOSTIC: Check Kalman gain behavior
-            Eigen::Vector3d innovation = z_proprio - xhat_estimated.tail<3>();
+            Eigen::Vector3d innovation = v_b - xhat_estimated.tail<3>();
             static int tune_counter = 0;
             if (tune_counter++ % 5000 == 0) {
                 RCLCPP_INFO(this->node_->get_logger(),
@@ -232,7 +232,7 @@ namespace state_estimator_plugins
                     "Measurement (leg odom vel): [%.3f, %.3f, %.3f]\n"
                     "Predicted vel: [%.3f, %.3f, %.3f]\n"
                     "Innovation (meas-pred): [%.3f, %.3f, %.3f] norm=%.3f",
-                    z_proprio.x(), z_proprio.y(), z_proprio.z(),
+                    v_b.x(), v_b.y(), v_b.z(),
                     xhat_estimated(3), xhat_estimated(4), xhat_estimated(5),
                     innovation.x(), innovation.y(), innovation.z(), innovation.norm());
             }
