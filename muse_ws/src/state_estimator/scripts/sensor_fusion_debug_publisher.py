@@ -61,17 +61,17 @@ class SensorFusionDebugPublisher(Node):
         super().__init__('sensor_fusion_debug_publisher')
         
         # Declare parameters
-        self.declare_parameter('state1_duration', 10.0)
+        self.declare_parameter('state1_duration', 5.0)
         self.declare_parameter('transition_duration', 5.0)
-        self.declare_parameter('loop_enabled', False)
+        self.declare_parameter('loop_enabled', True)
         
         # IMU State 1
-        self.declare_parameter('imu_acc_mean', [0.0, 0.0, 0.0])
-        self.declare_parameter('imu_acc_noise_std', 0.01)
+        self.declare_parameter('imu_acc_mean', [0.0, 0.0, 9.81])
+        self.declare_parameter('imu_acc_noise_std', 0.001)
         
         # IMU State 2
-        self.declare_parameter('imu_acc_mean_s2', [0.0, 0.0, 0.0])
-        self.declare_parameter('imu_acc_noise_std_s2', 0.01)
+        self.declare_parameter('imu_acc_mean_s2', [0.0, 0.0, 9.81])
+        self.declare_parameter('imu_acc_noise_std_s2', 0.001)
         
         # Leg Odometry State 1
         self.declare_parameter('leg_odom_vel_mean', [0.0, 0.0, 0.0])
@@ -112,7 +112,7 @@ class SensorFusionDebugPublisher(Node):
         
         # Publishers
         self.imu_pub = self.create_publisher(Imu, '/sensors/imu', sensor_qos)
-        self.attitude_pub = self.create_publisher(Attitude, '/state_estimator/attitude', sensor_qos)
+        self.attitude_pub = self.create_publisher(Attitude, '/sensors/attitude', sensor_qos)
         self.leg_odom_pub = self.create_publisher(LegOdometry, '/sensors/leg_odometry', sensor_qos)
         self.base_height_pub = self.create_publisher(BaseHeight, '/state_estimator/base_height', sensor_qos)
         

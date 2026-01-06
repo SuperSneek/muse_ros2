@@ -20,9 +20,5 @@
         <description>A plugin to fuse the estimated attitude and the leg odometry</description>
     </class>
 
-    <class type="state_estimator_plugins::ImuOdomPlugin" base_class_type="state_estimator_plugins::PluginBase">
-        <description>A plugin to estimate odometry from filtered IMU measurements</description>
-    </class>
-
 
 </library>
