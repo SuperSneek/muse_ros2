@@ -222,14 +222,11 @@ namespace state_estimator_plugins
 
 			// prediction
 			sensor_fusion_->predict(time_, u);
-            Eigen::Vector3d z_proprio;
-			//Convert leg odometry from body to world frame
-            z_proprio << w_R_b * v_b;
 
             // DIAGNOSTIC: Check Kalman gain behavior
             Eigen::Vector3d innovation = z_proprio - xhat_estimated.tail<3>();
             static int tune_counter = 0;
-            if (tune_counter++ % 50000 == 0) {
+            if (tune_counter++ % 5000 == 0) {
                 RCLCPP_INFO(this->node_->get_logger(),
                     "=== TUNING DEBUG ===\n"
                     "Measurement (leg odom vel): [%.3f, %.3f, %.3f]\n"
@@ -241,7 +238,7 @@ namespace state_estimator_plugins
             }
 
             // // correction
-			sensor_fusion_->update(time_, z_proprio);
+			sensor_fusion_->update(time_, v_b);
 			xhat_estimated = sensor_fusion_->getX();
 
 			// publish
