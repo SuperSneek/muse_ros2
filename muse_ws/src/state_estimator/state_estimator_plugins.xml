@@ -1,9 +1,4 @@
 <library path="state_estimator_plugins">
-
-    <class type="state_estimator_plugins::AttitudeEstimationPlugin" base_class_type="state_estimator_plugins::PluginBase">
-        <description>A plugin to estimate the attitude</description>
-    </class>
-
     <class type="state_estimator_plugins::ContactDetectionPlugin" base_class_type="state_estimator_plugins::PluginBase">
         <description>A plugin to detect foot contacts</description>
     </class>

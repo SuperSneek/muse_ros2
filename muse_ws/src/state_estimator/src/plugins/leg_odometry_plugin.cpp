@@ -18,7 +18,6 @@
 #include "state_estimator_msgs/msg/base_height.hpp"
 #include "state_estimator_msgs/msg/joint_state_with_acceleration.hpp" 
 #include "state_estimator_msgs/msg/contact_detection.hpp"
-#include "state_estimator_msgs/msg/attitude.hpp"
 
 // ROS 2 messages
 #include <sensor_msgs/msg/joint_state.hpp>
@@ -40,12 +39,11 @@ namespace state_estimator_plugins
 using ImuMsg = sensor_msgs::msg::Imu;
 using JointStateMsg = sensor_msgs::msg::JointState;
 using ContactMsg = state_estimator_msgs::msg::ContactDetection;
-using AttitudeMsg = state_estimator_msgs::msg::Attitude;
 
-using ApproximateTimePolicy = message_filters::sync_policies::ApproximateTime<ImuMsg, JointStateMsg, AttitudeMsg, ContactMsg>;
-using ExactTimePolicy = message_filters::sync_policies::ExactTime<ImuMsg, JointStateMsg, AttitudeMsg, ContactMsg>;
+using ApproximateTimePolicy = message_filters::sync_policies::ApproximateTime<ImuMsg, JointStateMsg, ContactMsg>;
+using ExactTimePolicy = message_filters::sync_policies::ExactTime<ImuMsg, JointStateMsg, ContactMsg>;
 
-#define MySyncPolicy ApproximateTimePolicy
+#define MySyncPolicy ExactTimePolicy
 
 class LegOdometryPlugin : public PluginBase
 {
@@ -102,7 +100,6 @@ private:
     std::shared_ptr<message_filters::Subscriber<ImuMsg>> imu_sub_;
     std::shared_ptr<message_filters::Subscriber<JointStateMsg>> joint_state_sub_;
     std::shared_ptr<message_filters::Subscriber<ContactMsg>> contact_sub_;  // TEMPORARY: disabled for experiment
-    std::shared_ptr<message_filters::Subscriber<AttitudeMsg>> attitude_sub_;
     std::shared_ptr<message_filters::Synchronizer<MySyncPolicy>> sync_;
 
     rclcpp::Publisher<state_estimator_msgs::msg::LegOdometry>::SharedPtr pub_;
@@ -333,8 +330,6 @@ private:
             "leg_odometry_plugin.joint_states_topic", "/state_estimator/joint_states");
         std::string contact_topic = node->declare_parameter<std::string>(
             "leg_odometry_plugin.contact_topic", "/state_estimator/contact_detection");  // TEMPORARY: disabled for experiment
-        std::string attitude_topic = node->declare_parameter<std::string>(
-            "leg_odometry_plugin.attitude_topic", "/state_estimator/attitude");
 
         // Setup subscribers
         auto sensor_qos = rclcpp::SensorDataQoS();
@@ -342,13 +337,12 @@ private:
         imu_sub_ = std::make_shared<message_filters::Subscriber<ImuMsg>>(node, imu_topic, sensor_qos);
         joint_state_sub_ = std::make_shared<message_filters::Subscriber<JointStateMsg>>(node, joint_states_topic, sensor_qos);
         contact_sub_ = std::make_shared<message_filters::Subscriber<ContactMsg>>(node, contact_topic, sensor_qos);
-        attitude_sub_ = std::make_shared<message_filters::Subscriber<AttitudeMsg>>(node, attitude_topic, sensor_qos);
 
         sync_ = std::make_shared<message_filters::Synchronizer<MySyncPolicy>>(
-            MySyncPolicy(100), *imu_sub_, *joint_state_sub_, *attitude_sub_, *contact_sub_);
+            MySyncPolicy(5), *imu_sub_, *joint_state_sub_, *contact_sub_);
         sync_->registerCallback(std::bind(&LegOdometryPlugin::callback, this,
                                          std::placeholders::_1, std::placeholders::_2,
-                                         std::placeholders::_3, std::placeholders::_4));
+                                         std::placeholders::_3));
 
         // Setup publishers
         std::string pub_topic = node->declare_parameter<std::string>(
@@ -362,7 +356,6 @@ private:
 
     void callback(const ImuMsg::ConstSharedPtr imu,
                   const JointStateMsg::ConstSharedPtr js,
-                  const AttitudeMsg::ConstSharedPtr attitude,
                   const ContactMsg::ConstSharedPtr contact) {
         
         if (!model_loaded_) {
@@ -381,7 +374,6 @@ private:
             return;
         }
 
-        // Extract IMU data (TEMPORARY: always assume all stances positive for experiment)
         extractSensorData(imu, contact);
 
         // Compute kinematics
@@ -391,7 +383,7 @@ private:
         }
 
         // Compute base velocity from leg odometry
-        Eigen::Vector3d base_velocity = computeBaseVelocity(foot_velocities, attitude);
+        Eigen::Vector3d base_velocity = computeBaseVelocity(foot_velocities, imu);
 
         // Compute base height
         double base_height;
@@ -525,8 +517,7 @@ private:
         }
     }
 
-    Eigen::Vector3d computeBaseVelocity(const std::vector<Eigen::Vector3d>& foot_velocities,
-                                       const AttitudeMsg::ConstSharedPtr& attitude) {
+    Eigen::Vector3d computeBaseVelocity(const std::vector<Eigen::Vector3d>& foot_velocities, const ImuMsg::ConstSharedPtr& imu) {
         
         // Get stance indicators
         std::vector<bool> stances = {stance_lf_, stance_rf_, stance_lh_, stance_rh_};
@@ -546,10 +537,10 @@ private:
             base_velocity /= total_weight;
         }
 
-        // Transform to world frame using attitude
+        // Transform to world frame using imu orientation
         Eigen::Quaterniond quat_est;
-        quat_est.w() = attitude->quaternion[0];
-        quat_est.vec() << attitude->quaternion[1], attitude->quaternion[2], attitude->quaternion[3];
+        quat_est.w() = imu->orientation.w;
+        quat_est.vec() << imu->orientation.x,imu->orientation.y, imu->orientation.z;
         
         Eigen::Matrix3d w_R_b = iit::commons::quatToRotMat(quat_est);
         

@@ -20,13 +20,11 @@ namespace state_estimator_plugins
 
 	typedef message_filters::sync_policies::ApproximateTime<
 		sensor_msgs::msg::Imu,
-		state_estimator_msgs::msg::Attitude,
 		state_estimator_msgs::msg::LegOdometry>
 		ApproximateTimePolicy;
 
 	typedef message_filters::sync_policies::ExactTime<
 		sensor_msgs::msg::Imu,
-		state_estimator_msgs::msg::Attitude,
 		state_estimator_msgs::msg::LegOdometry>
 		ExactTimePolicy;
 
@@ -104,7 +102,6 @@ namespace state_estimator_plugins
 
 			//Declare parameters
 			const std::string imu_topic = nh->declare_parameter<std::string>("sensor_fusion_plugin.imu_topic", "/sensors/imu");
-			const std::string attitude_topic = nh->declare_parameter<std::string>("sensor_fusion_plugin.attitude_topic", "/state_estimator/attitude");
 			const std::string leg_odom_topic = nh->declare_parameter<std::string>("sensor_fusion_plugin.leg_odometry_topic", "/sensors/leg_odometry");
 			const std::string pub_topic = nh->declare_parameter<std::string>("sensor_fusion_plugin.pub_topic", "/sensors/odometry");
 			const std::string base_height_topic = nh->declare_parameter<std::string>("sensor_fusion_plugin.base_height_topic", "/state_estimator/base_height");
@@ -113,12 +110,11 @@ namespace state_estimator_plugins
 			auto sensor_qos = rclcpp::SensorDataQoS();
 
 			imu_sub_ = std::make_shared<message_filters::Subscriber<sensor_msgs::msg::Imu>>(nh, imu_topic, sensor_qos);
-			attitude_sub_ = std::make_shared<message_filters::Subscriber<state_estimator_msgs::msg::Attitude>>(nh, attitude_topic, sensor_qos);
 			leg_odom_sub_ = std::make_shared<message_filters::Subscriber<state_estimator_msgs::msg::LegOdometry>>(nh, leg_odom_topic, sensor_qos);
 
 			//Synchronizer
-			sync_ = std::make_shared<message_filters::Synchronizer<MySyncPolicy>>(MySyncPolicy(100), *imu_sub_, *attitude_sub_, *leg_odom_sub_);
-			sync_->registerCallback(std::bind(&SensorFusionPlugin::callback_proprioception, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+			sync_ = std::make_shared<message_filters::Synchronizer<MySyncPolicy>>(MySyncPolicy(5), *imu_sub_, *leg_odom_sub_);
+			sync_->registerCallback(std::bind(&SensorFusionPlugin::callback_proprioception, this, std::placeholders::_1, std::placeholders::_2));
 
 			// Publisher
 			pub_ = nh->create_publisher<nav_msgs::msg::Odometry>(pub_topic, sensor_qos);
@@ -148,7 +144,6 @@ namespace state_estimator_plugins
 
 		void callback_proprioception(
 			const sensor_msgs::msg::Imu::ConstPtr &imu,
-			const state_estimator_msgs::msg::Attitude::ConstPtr &attitude,
 			const state_estimator_msgs::msg::LegOdometry::ConstPtr &leg_odom)
 		{
 			// Reading imu
@@ -157,9 +152,9 @@ namespace state_estimator_plugins
 			last_imu_stamp_ = imu->header.stamp;
 
 			// Reading attitude estimation
-			omega << attitude->angular_velocity[0], attitude->angular_velocity[1], attitude->angular_velocity[2];
-			quat_est.w() = attitude->quaternion[0];
-			quat_est.vec() << attitude->quaternion[1], attitude->quaternion[2], attitude->quaternion[3];
+			omega << imu->angular_velocity.x, imu->angular_velocity.y, imu->angular_velocity.z;
+			quat_est.w() = imu->orientation.w;
+			quat_est.vec() << imu->orientation.x, imu->orientation.y, imu->orientation.z;
 			rpy = iit::commons::quatToRPY(quat_est);
 			Eigen::Matrix3d b_R_w = iit::commons::quatToRotMat(quat_est);
 			// Use body->world rotation

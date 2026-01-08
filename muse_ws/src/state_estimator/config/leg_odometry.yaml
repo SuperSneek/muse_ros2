@@ -8,7 +8,6 @@
       imu_topic: "/imu" # Unitree: "/trunk_imu" # ANYmal: "/sensors/imu"
       joint_states_topic: "/joint_states" # Unitree (Go1): "/go1_gazebo/joint_states" # ANYmal: "/state_estimator/joint_states"
       contact_topic: "/state_estimator/contact_detection"
-      attitude_topic: "/state_estimator/attitude"
       pub_topic: "/state_estimator/leg_odometry"
       base_height_topic: "/state_estimator/base_height"
       # Feet frame names (order: FL, FR, BL, BR)
