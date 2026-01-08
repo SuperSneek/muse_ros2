@@ -76,7 +76,7 @@ using ExactTimePolicy = message_filters::sync_policies::ExactTime<boolean_msg, b
 		{
 
 			// publishing
-			msg_.header.stamp = node_->get_clock()->now();
+			msg_.header.stamp = node_->now();
 			msg_.header.frame_id = "base_link";
 
             //simply set the contact state, aggregating the incoming 4 seperate sensor topics into 1 message
